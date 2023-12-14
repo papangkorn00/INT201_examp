@@ -1,6 +1,6 @@
 // 65130500041 Papangkorn Kijsakulrat
-// import {createGuestList} from "./data/guestdata.js"
-const createGuestList = require("./data/guestdata.js")
+import {createGuestList} from "./data/guestdata.js"
+// const createGuestList = require("./data/guestdata.js")
 
 const guestList = createGuestList()
 
@@ -42,9 +42,11 @@ function guestForm() {
   // 3. Function to display all existing guests in the display area
   function displayGuests(guestResult) {
     const display = document.getElementById("display-area")
-    Array.from(display.children).forEach((guest) => {
-      guest.remove()
-    })
+    display.textContent = ""
+    // hard way
+    // Array.from(display.children).forEach((guest) => {
+    //   guest.remove()
+    // })
 
     guestResult.forEach((guest) => {
       displayGuest(guest)
@@ -81,13 +83,10 @@ function guestForm() {
     // displayGuests(guests.getAllGuests())
 
     // myCode
-    const target = event.target.id.split("-")
-    console.log(target) // (2) ['firstname', 'lastname']
-    guests.removeGuest({firstname: target[0], lastname: target[1]})
+    const targetName = event.target.id.split("-")
+    console.log(targetName) // (2) ['firstname', 'lastname']
+    guests.removeGuest({firstname: targetName[0], lastname: targetName[1]})
     displayGuests(guests.getAllGuests())
-    
-    
-    
   }
 
   return {
@@ -98,8 +97,8 @@ function guestForm() {
     removeGuest,
   }
 }
-module.exports = guestForm
-// export {guestForm}
-// const {registerEventHandling, displayGuests} = guestForm()
-// registerEventHandling()
-// displayGuests(guestList.getAllGuests())
+// module.exports = guestForm
+export {guestForm}
+const {registerEventHandling, displayGuests} = guestForm()
+registerEventHandling()
+displayGuests(guestList.getAllGuests())

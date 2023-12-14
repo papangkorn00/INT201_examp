@@ -34,7 +34,7 @@ class Order {
 
   calculateTotal() {
     const totalPrice = this.items.reduce((a, b) => {
-      a + b.price * b.quantity
+      a.name += b.price * b.quantity
     }, 0)
     return totalPrice
   }
@@ -45,7 +45,7 @@ class Order {
 
   findItemByName(itemName) {
     const findName = this.items.find((name) => {
-      return name.name === itemName
+      return (name.name = itemName)
     })
     if (!findName) return null
     return findName
@@ -80,24 +80,24 @@ console.log(myOrder.addItem({name: "Mouse", price: 25, quantity: 3})) // Adds Mo
 console.log(myOrder.addItem({name: "", price: 100, quantity: 1})) // Empty name, should not add and return -1
 console.log(myOrder.addItem({name: "Headphones", price: -50, quantity: 1})) // Negative price, should not add and return -1
 
-console.log(
-  "remove item----------------------------------------------------------------"
-)
-//remove item
-myOrder.removeItem("Laptop") // Removes Laptop if it exists
-console.log(myOrder.items)
+// console.log(
+//   "remove item----------------------------------------------------------------"
+// )
+// //remove item
+// myOrder.removeItem("Laptop") // Removes Laptop if it exists
+// console.log(myOrder.items)
 
-myOrder.removeItem("Keyboard") // Removes Keyboard if it exists
-console.log(myOrder.items)
+// myOrder.removeItem("Keyboard") // Removes Keyboard if it exists
+// console.log(myOrder.items)
 
-myOrder.removeItem("NonExistentItem") // Tries to remove a non-existent item
-console.log(myOrder.items)
+// myOrder.removeItem("NonExistentItem") // Tries to remove a non-existent item
+// console.log(myOrder.items)
 
-myOrder.removeItem("") // Tries to remove an item with an empty name
-console.log(myOrder.items)
+// myOrder.removeItem("") // Tries to remove an item with an empty name
+// console.log(myOrder.items)
 
-myOrder.removeItem("Mouse") // Removes Mouse if it exists
-console.log(myOrder.items)
+// myOrder.removeItem("Mouse") // Removes Mouse if it exists
+// console.log(myOrder.items)
 
 console.log(
   "calculateTotal----------------------------------------------------------------"
@@ -134,15 +134,15 @@ console.log(myOrder.findItemByName("")) // Tries to find an item with an empty n
 // myOrder.items = [];
 // console.log(myOrder.sortItemsByPrice("ascending")); // return empty array if items array is empty
 
-console.log(
-  "isItem----------------------------------------------------------------"
-)
-//isItem
-console.log(myOrder.isItem({name: "Pen", price: 3, quantity: 10})) // valid item return true
-console.log(myOrder.isItem({name: "Paper", price: 5, quantity: 20})) // valid item return true
-// console.log(myOrder.isItem(null)); // valid item return false
-// console.log(myOrder.isItem(undefined)); // valid item return false
-console.log(myOrder.isItem({price: 20, quantity: 1})) // missing name return false
-console.log(myOrder.isItem({name: "Notebook", price: -10, quantity: 5})) // negative price return false
-console.log(myOrder.isItem({name: "Notebook", price: 10, quantity: -5})) // negative quantity return false
-console.log(myOrder.isItem({name: "", price: 15, quantity: 5})) // empty name return false
+// console.log(
+//   "isItem----------------------------------------------------------------"
+// )
+// //isItem
+// console.log(myOrder.isItem({name: "Pen", price: 3, quantity: 10})) // valid item return true
+// console.log(myOrder.isItem({name: "Paper", price: 5, quantity: 20})) // valid item return true
+// // console.log(myOrder.isItem(null)); // valid item return false
+// // console.log(myOrder.isItem(undefined)); // valid item return false
+// console.log(myOrder.isItem({price: 20, quantity: 1})) // missing name return false
+// console.log(myOrder.isItem({name: "Notebook", price: -10, quantity: 5})) // negative price return false
+// console.log(myOrder.isItem({name: "Notebook", price: 10, quantity: -5})) // negative quantity return false
+// console.log(myOrder.isItem({name: "", price: 15, quantity: 5})) // empty name return false

@@ -42,5 +42,5 @@ class GuestManagement {
     )
   }
 }
-// export { GuestManagement }
-module.exports = GuestManagement
+export { GuestManagement }
+// module.exports = GuestManagement
