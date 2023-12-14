@@ -1,5 +1,5 @@
 // 65130500041 Papangkorn Kijsakulrat
-// import { createGuestList } from "./data/guestdata.js";
+// import {createGuestList} from "./data/guestdata.js"
 const createGuestList = require("./data/guestdata.js")
 
 const guestList = createGuestList()
@@ -42,8 +42,8 @@ function guestForm() {
   // 3. Function to display all existing guests in the display area
   function displayGuests(guestResult) {
     const display = document.getElementById("display-area")
-    Array.from(display.children).forEach((e) => {
-      e.remove()
+    Array.from(display.children).forEach((guest) => {
+      guest.remove()
     })
 
     guestResult.forEach((guest) => {
@@ -53,7 +53,7 @@ function guestForm() {
 
   // 4. Function to search and display matching guests
   function searchGuest(event) {
-    let searchInput = event.target.value
+    const searchInput = event.target.value
     displayGuests(guests.searchGuests(searchInput))
   }
 
@@ -69,14 +69,25 @@ function guestForm() {
 
   // 6. Function to remove a guest
   function removeGuest(event) {
-    // console.log(event.target.id);
-    const previousSiblingText = event.target.previousSibling.textContent
-    const arrName = previousSiblingText.split(" ")
-    // console.log(previousSiblingText);
-    // console.log(arrName);
+    // const [firstname, lastname] = event.target.id.split("-");
+    // guests.removeGuest({ firstname, lastname });
+    // displayGuests(guests.getAllGuests());
 
-    guests.removeGuest({firstname: arrName[0], lastname: arrName[1]})
+    // const target = event.target.previousSibling.textContent
+    // const arrName = target.split(" ")
+    // console.log(target)
+    // console.log(arrName)
+    // guests.removeGuest({firstname: arrName[0], lastname: arrName[1]})
+    // displayGuests(guests.getAllGuests())
+
+    // myCode
+    const target = event.target.id.split("-")
+    console.log(target) // (2) ['firstname', 'lastname']
+    guests.removeGuest({firstname: target[0], lastname: target[1]})
     displayGuests(guests.getAllGuests())
+    
+    
+    
   }
 
   return {
@@ -88,7 +99,7 @@ function guestForm() {
   }
 }
 module.exports = guestForm
-// export { guestForm };
-// const { registerEventHandling, displayGuests } = guestForm();
-// registerEventHandling();
-// displayGuests(guestList.getAllGuests());
+// export {guestForm}
+// const {registerEventHandling, displayGuests} = guestForm()
+// registerEventHandling()
+// displayGuests(guestList.getAllGuests())
